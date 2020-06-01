@@ -1,4 +1,3 @@
 # McDonaldTickets
 
-Application to insert McDonald requests, where you can also delete some items if you change your mind, choose your extras and beverages.
-Also includes the kitchen requests list based on what the client ordered (shows the last request made)
+Aplicação para inserir pedidos de refeições McDonald, poderá remover items antes de efetuar o pedido final, inclui também uma interface para o staff da cozinha saber o número de pedidos efetuados e o total de pedidos feitos com os respectivos items
