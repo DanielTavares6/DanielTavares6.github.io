@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>McDonald's Ticket</title>
+</head>
+
+<body onload="loadData()">
+
+    <!-- Client-->
+    <div class="container vh-100">
+        <form id="itemForm">
+
+            <div class="row">
+
+                <div class="col form-group">
+                    <h1>Novo pedido</h1>
+                    <label for="client-name">Nome do Cliente:</label>
+                    <input type="text" id="client-name" class="w-100 form-control" placeholder="Insira o seu nome aqui">
+                    <div class="alert alert-danger d-none" id="warningNoName" role="alert">
+                        É necessário inserir o nome do Cliente!
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 form-group">
+                    <div>
+                        <label for="">Artigo:</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <select name="" id="escolhas" class="form-control" onchange="change(value)">
+                                <option value="Sandes" selected>Sanduiche</option>
+                                <option value="Acomp">Acompanhamento</option>
+                                <option value="Bebida">Bebida</option>
+                            </select>
+                        </div>
+
+                        <div class="col-6">
+                            <select name="" id="items" class="form-control "
+                                onchange="$('#extra').val('Normal')"></select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="">Pedido Especial:</label>
+                    </div>
+
+                    <div>
+                        <select name="" id="extra" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-4 form-group">
+                    <button class="btn btn-primary btn-lg w-100 h-100 p-5" id="addProduct" type="button"
+                        onclick="add()">Adicionar Produto</button>
+                </div>
+            </div>
+
+            <!-- Table for products selected -->
+            <div class="row">
+                <table class="table" id="orderTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th scope="col">Artigo</th>
+                            <th scope="col">Extra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="alert alert-danger d-none" id="warningNoItems" role="alert">
+                É necessário inserir 1 item antes de finalizar pedido!
+            </div>
+            <button class="btn btn-primary btn-block btn-lg "  type="button" id="orderBtn">Finalizar pedido</button>
+
+        </form>
+    </div>
+
+    <!-- Kitchen -->
+    <div class="container vh-100">
+        <h1>Servico Cozinha
+        </h1>
+        <div class="row h-25">
+            
+            
+            <div class="col-4">
+                <button class="btn btn-primary h-75 w-100">Todos</button>
+            </div>
+
+            <div class="col-4">
+                <button class="btn btn-primary h-75 w-100">Com extra</button>
+            </div>
+
+            <div class="col-4">
+                <button class="btn btn-primary h-75 w-100">Sem extra</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h4>Id do Pedido:</h4>
+                <span id="spanId">Nenhum dado a apresentar</span>
+            </div>
+            <div class="col-12">
+                <h4>Nome do Cliente:</h4>
+                <span id="spanNome">Nenhum dado a apresentar</span>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table" id="kitchenTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Artigo</th>
+                        <th scope="col">Extra</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container vh-100">
+        <div class="row">
+            <h2>Tabela de pedidos activos
+            </h2>
+        </div>
+    </div> 
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+           $("form").submit(function(e){
+               e.preventDefault(e);
+           });
+       });
+       </script>
+
+</body>
+
+</html>
