@@ -50,6 +50,6 @@ const productNameBebidasList = [
 ]
 
 const productExtraBebidasList = [
-    "Com Gelo",
-    "Natural"
+    "Natural",
+    "Com Gelo"
 ]

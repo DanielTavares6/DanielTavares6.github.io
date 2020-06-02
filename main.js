@@ -21,6 +21,7 @@ function loadAcomp() {
 
 function loadBebida() {
     genericLoad(productNameBebidasList, "items");
+    $("#extra").append(`<option> Normal </option>`);
     genericLoad(productExtraBebidasList, "extra");
 }
 
@@ -68,7 +69,6 @@ function add() {
     let extra = $("#extra").val();
     prod = new Product(item, extra);
     items.push(prod);
-    console.log(items);
     addToTable(prod);
 }
 
@@ -100,31 +100,32 @@ function removeItem(el, prod) {
 ///submit order
 $("#orderBtn").click(() => {
     let name = $("#client-name").val();
-    
-    if(name != ""){
+
+    if (name != "") {
         $("#warningNoName").addClass("d-none");
     }
-    else{
+    else {
         $("#warningNoName").removeClass("d-none");
     }
-    if(items.length != 0){
+    if (items.length != 0) {
         $("#warningNoItems").addClass("d-none");
     }
-    else{
+    else {
         $("#warningNoItems").removeClass("d-none");
     }
     if (items.length != 0 && name != "") {
         let tempID = new Date();
-        
-        order = new Order(items, name,tempID.getTime());
+
+        order = new Order(items, name, tempID.getTime());
         orders.push(order);
         getDataOrders(orders);
         clearTable();
+        items = [];
         return;
     }
 })
 
-function clearTable(){
+function clearTable() {
     $("#itemForm").trigger("reset");
     $("#orderTable tbody tr").remove();
 }
@@ -133,18 +134,64 @@ function clearTable(){
 
 //Kitchen
 
-function getDataOrders(ordersArray){
+function getDataOrders(ordersArray) {
 
 
-        let temp = ordersArray[0].escolha;
-        console.log(ordersArray);
-        $("#spanNome").html(ordersArray[0].nome);
-        $("#spanId").html(ordersArray[0].id); 
-        
-        $("#kitchenTable tbody tr").remove();
-        temp.forEach(order =>{
-            $("#kitchenTable tbody").append(`<tr> <td> </td> <td> ${order.item} </td> <td> ${order.extra} </td> </tr>`);
+    let temp = ordersArray[0].escolha;
+    $("#spanNome").html(ordersArray[0].nome);
+    $("#spanId").html(ordersArray[0].id);
 
+    $("#kitchenTable tbody tr").remove();
+    temp.forEach(order => {
+        $("#kitchenTable tbody").append(`<tr> <td> </td> <td> ${order.item} </td> <td> ${order.extra} </td> </tr>`);
+
+    })
+    getCount();
+
+}
+
+function getCount() {
+
+    let numberTotalOrders = orders.length;
+    let numberTotalExtra = 0;
+    let numberTotalNormal = 0;
+
+    //Total Extra
+    let tempExtra = [];
+    orders.map(order => {
+
+        return order.escolha.some(value => {
+
+            return value.extra != "Normal" ? tempExtra.push(order) : "";
         })
+
+    })
+
+    numberTotalExtra = tempExtra.length;
+
+    //Total Normal
+    let tempNormal = [];
+
+    orders.map(order =>{
+        let temp = order.escolha.every(value =>{
+            return value.extra == "Normal" ;
+        })
+        if(temp){
+            tempNormal.push(order);
+        }
+
+        
+    })
+
+    numberTotalNormal = tempNormal.length;
+
+    
+    let totalCounter = document.getElementById("allOrders");
+    let totalExtra = document.getElementById("allExtra");
+    let totalNormal = document.getElementById("allNormal");
+
+    totalCounter.innerHTML = numberTotalOrders;
+    totalExtra.innerHTML = numberTotalExtra;
+    totalNormal.innerHTML = numberTotalNormal;
 
 }
