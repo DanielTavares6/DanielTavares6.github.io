@@ -58,8 +58,8 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-4 form-group">
-                    <button class="btn btn-primary h-100  w-100" id="addProduct" type="button"
-                        onclick="add()">Adicionar Produto</button>
+                    <button class="btn btn-primary h-100  w-100" id="addProduct" type="button" onclick="add()">Adicionar
+                        Produto</button>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
             <div class="alert alert-danger d-none" id="warningNoItems" role="alert">
                 É necessário inserir 1 item antes de finalizar pedido!
             </div>
-            <button class="btn btn-success btn-block btn-lg "  type="button" id="orderBtn">Finalizar pedido</button>
+            <button class="btn btn-success btn-block btn-lg " type="button" id="orderBtn">Finalizar pedido</button>
 
         </form>
     </div>
@@ -91,20 +91,22 @@
         <h1>Servico Cozinha
         </h1>
         <div class="row row-custom justify-content-center">
-            
-            
-            <div class="col-3 btn btn-primary  w-100 m-3">
-                <label >Todos</label>
+
+
+            <div class="col-3 btn btn-primary kitchenDiv w-100 m-3" onclick="getDataOrders(); changeBgButtons(this)">
+                <label>Todos</label>
                 <p id="allOrders">0</p>
             </div>
 
-            <div class="col-3 btn btn-primary  w-100 m-3">
-                <label >Com extra</label>
+            <div class="col-3 btn btn-primary kitchenDiv w-100 m-3"
+                onclick="getDataOrdersExtra(); changeBgButtons(this) ">
+                <label>Com extra</label>
                 <p id="allExtra">0</p>
             </div>
 
-            <div class="col-3 btn btn-primary  w-100 m-3">
-                <label >Sem extra</label>
+            <div class="col-3 btn btn-primary kitchenDiv w-100 m-3"
+                onclick="getDataOrdersNormal(); changeBgButtons(this)">
+                <label>Sem extra</label>
                 <p id="allNormal">0</p>
             </div>
         </div>
@@ -122,7 +124,6 @@
             <table class="table" id="kitchenTable">
                 <thead>
                     <tr>
-                        <th></th>
                         <th scope="col">Artigo</th>
                         <th scope="col">Extra</th>
                     </tr>
@@ -131,15 +132,45 @@
 
                 </tbody>
             </table>
+            <button class="btn btn-primary" style="visibility: hidden;" id="kitchenBtn" onclick="orderDone()">Pedido
+                tratado</button>
         </div>
     </div>
 
     <div class="container container-custom">
         <div class="row">
-            <h2>Tabela de pedidos activos
-            </h2>
+            <h2>Tabela de pedidos activos</h2>
+
         </div>
-    </div> 
+        <div class="row">
+            <div class="col-1 p-1">
+                <label for="" >Filtro:</label>
+            </div>
+            <div class="col-11">
+
+                <select name="" id="filterOrders" class="form-control">
+                    <option value="all" >Todos</option>
+                    <option value="extra" >Com Extra</option>
+                    <option value="semExtra" >Sem Extra</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row pt-3">
+            <table class="table" id="activeOrders">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome do Cliente</th>
+                        <th scope="col">Pedido</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -151,15 +182,17 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="data.js"></script>
-    <script src="main.js"></script>
+    <script src="client.js"></script>
+    <script src="kitchen.js"></script>
+    <script src="filterTable.js"></script>
     <script type='text/javascript'>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-           $("form").submit(function(e){
-               e.preventDefault(e);
-           });
-       });
-       </script>
+            $("form").submit(function (e) {
+                e.preventDefault(e);
+            });
+        });
+    </script>
 
 </body>
 

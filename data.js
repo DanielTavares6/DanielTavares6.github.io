@@ -18,6 +18,17 @@ class Order {
     }
 }
 
+let items = [];
+let orders = [];
+let currentFilter = "All";
+
+
+function loadData() {
+    loadSandes();
+    getAllOrdersClient();
+}
+
+
 
 const productNameSanduichesList = [
     "Big Mac®",
