@@ -1,0 +1,14 @@
+.container-custom {
+    min-height: 100vh;
+    overflow: hidden;
+    margin-bottom: 30%;
+}
+
+.row-custom{
+    height: 15vh;
+    margin-bottom: 10%;
+}
+
+.kitchenDiv{
+    cursor: pointer;
+}

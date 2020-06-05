@@ -1,12 +1,3 @@
-//Client
-let items = [];
-let orders = [];
-
-
-function loadData() {
-    loadSandes();
-}
-
 //Insert data into selects
 function loadSandes() {
     genericLoad(productNameSanduichesList, "items");
@@ -31,8 +22,6 @@ function genericLoad(array, option) {
 
     });
 }
-
-//////
 
 
 function change(value) {
@@ -62,8 +51,6 @@ function removeOptions() {
 }
 
 
-///Add items
-
 function add() {
     let item = $("#items").val();
     let extra = $("#extra").val();
@@ -72,13 +59,11 @@ function add() {
     addToTable(prod);
 }
 
-///Add to table
+
 function addToTable(items) {
     $("#orderTable tbody").append(`<tr> <td> <button class="btn btn-danger" onclick="removeItem(this,items)">X</button> </td> <td> ${items.item} </td> <td> ${items.extra} </td> </tr>`);
 }
 
-
-///Delete from table
 
 function removeItem(el, prod) {
     $(el).closest('tr').remove();
@@ -118,7 +103,8 @@ $("#orderBtn").click(() => {
 
         order = new Order(items, name, tempID.getTime());
         orders.push(order);
-        getDataOrders(orders);
+        getDataOrders();
+        getAllOrdersClient();
         clearTable();
         items = [];
         return;
@@ -128,70 +114,4 @@ $("#orderBtn").click(() => {
 function clearTable() {
     $("#itemForm").trigger("reset");
     $("#orderTable tbody tr").remove();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-//Kitchen
-
-function getDataOrders(ordersArray) {
-
-
-    let temp = ordersArray[0].escolha;
-    $("#spanNome").html(ordersArray[0].nome);
-    $("#spanId").html(ordersArray[0].id);
-
-    $("#kitchenTable tbody tr").remove();
-    temp.forEach(order => {
-        $("#kitchenTable tbody").append(`<tr> <td> </td> <td> ${order.item} </td> <td> ${order.extra} </td> </tr>`);
-
-    })
-    getCount();
-
-}
-
-function getCount() {
-
-    let numberTotalOrders = orders.length;
-    let numberTotalExtra = 0;
-    let numberTotalNormal = 0;
-
-    //Total Extra
-    let tempExtra = [];
-    orders.map(order => {
-
-        return order.escolha.some(value => {
-
-            return value.extra != "Normal" ? tempExtra.push(order) : "";
-        })
-
-    })
-
-    numberTotalExtra = tempExtra.length;
-
-    //Total Normal
-    let tempNormal = [];
-
-    orders.map(order =>{
-        let temp = order.escolha.every(value =>{
-            return value.extra == "Normal" ;
-        })
-        if(temp){
-            tempNormal.push(order);
-        }
-
-        
-    })
-
-    numberTotalNormal = tempNormal.length;
-
-    
-    let totalCounter = document.getElementById("allOrders");
-    let totalExtra = document.getElementById("allExtra");
-    let totalNormal = document.getElementById("allNormal");
-
-    totalCounter.innerHTML = numberTotalOrders;
-    totalExtra.innerHTML = numberTotalExtra;
-    totalNormal.innerHTML = numberTotalNormal;
-
 }
