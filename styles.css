@@ -25,7 +25,7 @@
 @media only screen and (min-width:500px) and (max-width: 1000px)  { 
 	.kitchenDiv {
         font-size: 20px;
-        height: 100px;
+        height: 4em
     }
 }
 
