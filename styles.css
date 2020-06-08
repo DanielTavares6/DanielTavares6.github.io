@@ -6,7 +6,7 @@
 
 .row-custom{
     height: 15vh;
-    margin-bottom: 10%;
+    margin-bottom: 15%;
     flex-wrap: nowrap;
 }
 
@@ -24,15 +24,15 @@
 
 @media only screen and (min-width:500px) and (max-width: 1000px)  { 
 	.kitchenDiv {
-        font-size: 20px;
-        height: 4em
+        font-size: 17px;
+        height: 19vh
     }
 }
 
 @media only screen and (min-width:1000px)   { 
 	.kitchenDiv {
         font-size: 25px;
-        height: 10vh;
+        height: 13vh;
     }
 }
 
