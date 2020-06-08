@@ -36,3 +36,17 @@
     }
 }
 
+
+@media only screen and (width:667px)   { 
+	.kitchenDiv {
+        font-size: 14px;
+        height: 19vh;
+    }
+}
+
+@media only screen and (width:768px)   { 
+	.kitchenDiv {
+        font-size: 17px;
+        height: 14vh;
+    }
+}
