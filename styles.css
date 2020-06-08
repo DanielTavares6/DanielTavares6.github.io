@@ -7,8 +7,32 @@
 .row-custom{
     height: 15vh;
     margin-bottom: 10%;
+    flex-wrap: nowrap;
 }
 
 .kitchenDiv{
     cursor: pointer;
 }
+
+
+@media only screen and (min-width:300px) and (max-width: 500px)  { 
+	.kitchenDiv {
+        font-size: 10px;
+        height: 8vh;
+    }
+}
+
+@media only screen and (min-width:500px) and (max-width: 1000px)  { 
+	.kitchenDiv {
+        font-size: 20px;
+        height: 100px;
+    }
+}
+
+@media only screen and (min-width:1000px)   { 
+	.kitchenDiv {
+        font-size: 25px;
+        height: 10vh;
+    }
+}
+
